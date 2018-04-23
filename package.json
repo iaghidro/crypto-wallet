@@ -5,7 +5,7 @@
   "license"                 : "UNLICENSED",
   "repository" : {
         "type"              : "git",
-        "url"               : "git@bitbucket.org:rfolds/crypto-wallet.git"
+        "url"               : "https://github.com/iaghidro/crypto-wallet.git"
   },
   "contributors"            : [],
   "scripts": {

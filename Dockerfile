@@ -1,5 +1,5 @@
 
-FROM rfolds/wallet-apps:latest
+FROM iaghidro/wallet-apps:latest
 
 COPY ./ /app
 COPY ./wallets/ /wallets
