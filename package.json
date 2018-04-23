@@ -1,0 +1,59 @@
+{
+  "name"                    : "crypto-wallet",
+  "version"                 : "1.0.0",
+  "author"                  : "Istvan Ghidro",
+  "license"                 : "UNLICENSED",
+  "repository" : {
+        "type"              : "git",
+        "url"               : "git@bitbucket.org:rfolds/crypto-wallet.git"
+  },
+  "contributors"            : [],
+  "scripts": {
+    "start"                 : "mkdir -p /logs; npm run getPathVariables npm run configureForever main.js",
+    "startDev"              : "mkdir -p /logs; npm run configureDev; npm run getPathVariables node main.js --debug",
+
+    "stop"                  : "killall node",
+    "tailLogs"              : "tail -f /logs/trader.logs",
+    "restart"               : "npm run stop && npm start",
+    "configureForever"      : "forever start --workingDir ./ --spinSleepTime 15000 --minUptime 3000 -w --watchDirectory ./ -l /logs/trader.logs -a",
+
+    "getPathVariables"      : "ENV_NAME=`npm config get ENV_NAME` WALLET_ID=`npm config get WALLET_ID` PAIR_CODE=`npm config get PAIR_CODE` SIMULATION=`npm config get SIMULATION`",
+    "configureDev"          : "npm config set ENV_NAME dev; npm config set WALLET_ID eth_alt2; npm config set PAIR_CODE eth_alt1; npm config set SIMULATION false;",
+
+    "test"                  : "mocha --recursive",
+    "testGrep"              : "mocha --recursive -g",
+
+    "balance"               : "WALLET_ID=`npm config get WALLET_ID` node scripts/getBalance.js",
+    "logWalletBalance"      : "WALLET_ID=`npm config get WALLET_ID` node scripts/logWalletBalance.js",
+    "sendCoins"             : "WALLET_ID=`npm config get WALLET_ID` node scripts/sendCoins.js",
+    "consolidateCoins"      : "WALLET_ID=`npm config get WALLET_ID` node scripts/consolidateCoins.js",
+    "consolidateEther"      : "WALLET_ID=`npm config get WALLET_ID` node scripts/consolidateEther.js",
+    "disperseCoins"         : "WALLET_ID=`npm config get WALLET_ID` node scripts/disperseCoins.js",
+    "disperseEther"         : "WALLET_ID=`npm config get WALLET_ID` node scripts/disperseEther.js",
+    "generateWalletFiles"   : "node scripts/generateWalletFiles.js",
+    "startParity"           : "./container-scripts/startParity.sh"
+  },
+  "dependencies": {
+    "async"                 : "2.5.0",
+    "big.js"                : "3.1.3",
+    "child-process-promise" : "2.2.1",
+    "joi"                   : "10.6.0",
+    "moment"                : "2.19.3",
+    "slack-node"            : "0.1.8",
+    "web3"                  : "0.20.5",
+    "randomstring"          : "1.1.5",
+    "iota.lib.js"           : "0.4.3",
+    "aws-sdk"               : "2.167.0",
+    "lodash"                : "4.17.4",
+    "request"               : "2.83.0",
+    "create-file"           : "1.0.1"
+  },
+  "devDependencies": {
+    "mocha"                 : "3.1.2",
+    "should"                : "11.1.1",
+    "chai"                  : "3.5.0",
+    "sinon"                 : "4.2.2",
+    "sinon-as-promised"     : "4.0.2",
+    "sinon-chai"            : "2.8.0"
+  }
+}
